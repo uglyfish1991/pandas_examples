@@ -54,10 +54,15 @@ print("\n ---------------------------------------------------- \n")
 #* --------------------- Reading External Files ----------------------------------
 
 #? We can read in common data formats to Pandas to work with: 
-df = pd.read_csv("speeds.csv")
 
+#? CSV is a common file type - it stands for comma seperated values
+#? I know 14, 16, 19 are different values because of the comma
+#? They are an easy-to-work with, small, efficient data format but they are not easy to read!
+#? We can read them into pandas to work with them easily
+
+df = pd.read_csv("speeds.csv")
 print(df)
 
+#? We can also work with Excel files. These are a little slower, but still work very well!
 df = pd.read_excel("speeds.xlsx")
-
 print(df)
