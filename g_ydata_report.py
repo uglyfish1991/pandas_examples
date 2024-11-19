@@ -5,4 +5,4 @@ df = pd.read_csv("sup_results.csv")
 
 profile = ProfileReport(df, title = "International Results")
 
-profile.to_file('results_report.html')
+profile.to_file('ydata_results_report.html')
