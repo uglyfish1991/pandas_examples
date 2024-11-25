@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_excel("first_hour_sales.xlsx")
+df = pd.read_excel("sup_first_hour_sales.xlsx")
 
 df = df.set_index("Transaction ID")
 df = df.drop(["Till ID", "Unnamed: 0"], axis = 1)
@@ -24,19 +24,23 @@ df["Time"] = df["Time"].apply(float_to_time)
 df["Time"] = pd.to_datetime(df["Time"])
 print(df)
 
+print(df["Basket"].mode())
+
 def split_basket(basket_string):
     items = basket_string.split(",")
-    # "Tea, Tea, Tea, Coffee"
-    # ["Tea", " Tea", " Tea", " Coffee"]
+    # "Tea, Tea, Tea"
+    # ["Tea", " Tea", " Tea"]
+
     # stripped_items = []
     # for item in items:
     #     stripped_items.append(item.strip())
-    
     stripped_items = [item.strip() for item in items]
     return stripped_items
 
 df["Basket"] = df["Basket"].apply(split_basket)
 print(df)
 
-exploded_data = df.explode("Basket")
-print(exploded_data["Basket"].value_counts())
+exploded_data = df.explode(["Basket"])
+print(exploded_data)
+
+print(exploded_data["Basket"].mode())
